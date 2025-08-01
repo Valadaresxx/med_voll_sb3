@@ -21,11 +21,13 @@ public class Paciente {
     private String email;
     private String cpf;
     private Endereco endereco;
+    private boolean ativo;
 
     public Paciente(DadosCadastroPaciente dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados);
+        this.ativo = true;
     }
 }
