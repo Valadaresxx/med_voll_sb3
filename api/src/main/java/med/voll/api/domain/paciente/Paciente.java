@@ -30,4 +30,15 @@ public class Paciente {
         this.endereco = new Endereco(dados);
         this.ativo = true;
     }
+
+    public void atualizarDados(DadosAtualizarPaciente dados) {
+        this.nome = dados.nome();
+        this.email = dados.email();
+        this.cpf = dados.cpf();
+        this.endereco = dados.endereco();
+    }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }
