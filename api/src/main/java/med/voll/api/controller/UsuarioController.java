@@ -3,6 +3,7 @@ package med.voll.api.controller;
 import jakarta.validation.Valid;
 import med.voll.api.domain.usuario.DadosAutenticacao;
 import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.infra.security.DadosTokenJwt;
 import med.voll.api.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,9 @@ public class UsuarioController {
         var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
         var autentication = manager.authenticate(token);
 
-        return ResponseEntity.ok(tokenService.gerartoken((Usuario) autentication.getPrincipal()));
+        var tokenJwt = tokenService.gerartoken((Usuario) autentication.getPrincipal());
+        return ResponseEntity.ok(new DadosTokenJwt(tokenJwt));
+
     }
 
 }
